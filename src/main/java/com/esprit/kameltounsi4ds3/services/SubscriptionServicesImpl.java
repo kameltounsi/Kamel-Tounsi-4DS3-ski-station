@@ -2,10 +2,14 @@ package com.esprit.kameltounsi4ds3.services;
 
 import com.esprit.kameltounsi4ds3.Repositories.ISubscriptionRepository;
 import com.esprit.kameltounsi4ds3.entities.Subscription;
+import com.esprit.kameltounsi4ds3.entities.TypeSubscription;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
+
 @Service
 @AllArgsConstructor
 public class SubscriptionServicesImpl implements ISubscriptionServices{
@@ -34,4 +38,15 @@ public class SubscriptionServicesImpl implements ISubscriptionServices{
     public List<Subscription> retrieveAll() {
         return subscriptionRepository.findAll();
     }
+    @Override
+    public Set<Subscription> getSubscriptionByType(TypeSubscription type) {
+        return subscriptionRepository.findByTypeSubOrderByStartDateAsc(type);
+    }
+    @Override
+    public List<Subscription> retrieveSubscriptionsByDates(LocalDate startDate, LocalDate endDate) {
+        return subscriptionRepository.getSubscriptionsByStartDateBetween(startDate, endDate);
+    }
+
+
+
 }

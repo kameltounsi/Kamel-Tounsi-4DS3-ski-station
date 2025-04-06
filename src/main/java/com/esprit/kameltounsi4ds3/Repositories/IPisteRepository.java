@@ -11,8 +11,7 @@ import java.util.List;
 @Repository
 public interface IPisteRepository extends JpaRepository<Piste, Long> {
     List<Piste> findByColor(Color color);
-    List<Piste> findBynamePisteAndColor(String name, Color color);
-
+    List<Piste> findByNamePisteAndColor(String name, Color color);
 
 
 }

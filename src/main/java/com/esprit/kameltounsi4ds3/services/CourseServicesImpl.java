@@ -2,6 +2,8 @@ package com.esprit.kameltounsi4ds3.services;
 
 import com.esprit.kameltounsi4ds3.Repositories.ICourseRepository;
 import com.esprit.kameltounsi4ds3.entities.Course;
+import com.esprit.kameltounsi4ds3.entities.Support;
+import com.esprit.kameltounsi4ds3.entities.TypeCourse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +35,14 @@ public class CourseServicesImpl implements ICourseServices{
     @Override
     public void deleteCourse(Long numCourse) {
         courseRepository.deleteById(numCourse);
+    }
+    @Override
+    public List<Course> getCoursesByInstructorAndSupport(Long numInstructor, Support support) {
+        return courseRepository.findByInstructorNumInstructorAndSupport(numInstructor, support);
+    }
+
+    @Override
+    public List<Course> getCoursesByType(TypeCourse typeCourse, int numWeek) {
+        return courseRepository.findByTypeCourseAndRegistrationsNumWeek(typeCourse, numWeek);
     }
 }

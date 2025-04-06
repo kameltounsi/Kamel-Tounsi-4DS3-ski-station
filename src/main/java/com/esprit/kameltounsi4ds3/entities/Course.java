@@ -24,4 +24,6 @@ public class Course {
     private int timeSlot;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
     private Set<Registration> registrations;
+    @ManyToOne
+    Instructor instructor;
 }
